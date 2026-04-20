@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="TransportApp.Mobile.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:pages="clr-namespace:TransportApp.Mobile.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="TransportApp.Mobile">
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <FontImageSource x:Key="IconDashboard" Glyph="D" FontFamily="OpenSansRegular" Color="Gray" />
+            <FontImageSource x:Key="IconBus" Glyph="B" FontFamily="OpenSansRegular" Color="Gray" />
+            <FontImageSource x:Key="IconRoute" Glyph="R" FontFamily="OpenSansRegular" Color="Gray" />
+            <FontImageSource x:Key="IconMeta" Glyph="S" FontFamily="OpenSansRegular" Color="Gray" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem Title="Dashboard" Icon="{StaticResource IconDashboard}">
+        <ShellContent 
+            ContentTemplate="{DataTemplate pages:MainPage}" 
+            Route="main" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Transport Schedule" Icon="{StaticResource IconBus}">
+        <ShellContent 
+            ContentTemplate="{DataTemplate pages:StopDetailPage}" 
+            Route="stopDetails" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Route Planner" Icon="{StaticResource IconRoute}">
+        <ShellContent 
+            ContentTemplate="{DataTemplate pages:RoutePlannerPage}" 
+            Route="routePlanner" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings" Icon="{StaticResource IconMeta}">
+        <ShellContent 
+            ContentTemplate="{DataTemplate pages:ManageMetaPage}" 
+            Route="manage" />
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout Padding="20">
+            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 
+                               SelectionChanged="SfSegmentedControl_SelectionChanged"
+                               VerticalOptions="Center" 
+                               HorizontalOptions="Center">
+                <sf:SfSegmentedControl.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Light</x:String>
+                        <x:String>Dark</x:String>
+                    </x:Array>
+                </sf:SfSegmentedControl.ItemsSource>
+            </sf:SfSegmentedControl>
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+</Shell>

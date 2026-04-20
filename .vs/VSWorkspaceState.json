@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\TransportApp",
+    "\\TransportApp.Mobile",
+    "\\TransportApp.Mobile\\Data",
+    "\\TransportApp.Mobile\\PageModels",
+    "\\TransportApp.Mobile\\Pages",
+    "\\TransportApp.Mobile\\Platforms\\Android",
+    "\\TransportApp.Mobile\\Platforms\\Tizen",
+    "\\TransportApp.Mobile\\Services",
+    "\\TransportApp.Mobile\\Utilities"
+  ],
+  "SelectedNode": "\\TransportApp.Mobile\\TransportApp.Mobile.sln",
+  "PreviewInSolutionExplorer": false
+}
