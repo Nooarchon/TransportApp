@@ -40,22 +40,22 @@
                 <ScrollView>
                     <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}" Padding="{StaticResource LayoutPadding}">
                         <controls:CategoryChart />
-                        <Label Text="Projects" Style="{StaticResource Title2}"/>
-                        <ScrollView Orientation="Horizontal" Margin="-30,0">
-                            <HorizontalStackLayout 
-                                Spacing="15" Padding="30,0"
-                                BindableLayout.ItemsSource="{Binding Projects}">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate x:DataType="models:Project">
-                                        <controls:ProjectCardView WidthRequest="200">
-                                            <controls:ProjectCardView.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding NavigateToProjectCommand, Source={RelativeSource AncestorType={x:Type pageModels:MainPageModel}}, x:DataType=pageModels:MainPageModel}" CommandParameter="{Binding .}"/>
-                                            </controls:ProjectCardView.GestureRecognizers>
-                                        </controls:ProjectCardView>
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
-                            </HorizontalStackLayout>
-                        </ScrollView>
+                        <Label Text="Ближайшее расписание" Style="{StaticResource Title2}" Margin="0,10,0,0"/>
+
+                        <CollectionView ItemsSource="{Binding Departures}" HeightRequest="250">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="models:StopDeparture">
+                                    <Grid Padding="10" ColumnDefinitions="Auto, *, Auto">
+                                        <Label Text="{Binding route_short_name}" FontAttributes="Bold" Padding="0,0,10,0" />
+                                        <Label Grid.Column="1" Text="{Binding trip_headsign}" LineBreakMode="TailTruncation" />
+                                        <Label Grid.Column="2" Text="{Binding arrival_time}" HorizontalOptions="End" />
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                            <CollectionView.EmptyView>
+                                <Label Text="Данных пока нет. Потяните вниз для обновления." HorizontalOptions="Center" VerticalOptions="Center" />
+                            </CollectionView.EmptyView>
+                        </CollectionView>
                         <Grid HeightRequest="44">
                             <Label Text="Tasks" Style="{StaticResource Title2}" VerticalOptions="Center"/>
                             <ImageButton 

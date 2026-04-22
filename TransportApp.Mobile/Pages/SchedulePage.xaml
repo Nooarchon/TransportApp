@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:TransportApp.Mobile.Models"
+             x:Class="TransportApp.Mobile.Pages.SchedulePage"
+             Title="Расписание">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry x:Name="StopIdEntry" Placeholder="Введите ID остановки" />
+
+        <Button Text="Найти" Clicked="OnGetScheduleClicked" />
+
+        <CollectionView x:Name="DeparturesList">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:StopDeparture">
+                    <HorizontalStackLayout Padding="10" Spacing="20">
+                        <Label Text="{Binding route_short_name}" FontAttributes="Bold" TextColor="Red" />
+                        <Label Text="{Binding trip_headsign}" />
+                        <Label Text="{Binding arrival_time}" HorizontalOptions="End" />
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

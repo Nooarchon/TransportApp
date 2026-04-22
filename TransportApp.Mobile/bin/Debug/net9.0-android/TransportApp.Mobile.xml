@@ -1,0 +1,545 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TransportApp.Mobile</name>
+    </assembly>
+    <members>
+        <member name="T:TransportApp.Mobile.Data.CategoryRepository">
+            <summary>
+            Repository class for managing categories in the database.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.#ctor(Microsoft.Extensions.Logging.ILogger{TransportApp.Mobile.Data.CategoryRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TransportApp.Mobile.Data.CategoryRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Category table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.ListAsync">
+            <summary>
+            Retrieves a list of all categories from the database.
+            </summary>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.Category"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific category by its ID.
+            </summary>
+            <param name="id">The ID of the category.</param>
+            <returns>A <see cref="T:TransportApp.Mobile.Models.Category"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.SaveItemAsync(TransportApp.Mobile.Models.Category)">
+            <summary>
+            Saves a category to the database. If the category ID is 0, a new category is created; otherwise, the existing category is updated.
+            </summary>
+            <param name="item">The category to save.</param>
+            <returns>The ID of the saved category.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.DeleteItemAsync(TransportApp.Mobile.Models.Category)">
+            <summary>
+            Deletes a category from the database.
+            </summary>
+            <param name="item">The category to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.CategoryRepository.DropTableAsync">
+            <summary>
+            Drops the Category table from the database.
+            </summary>
+        </member>
+        <member name="T:TransportApp.Mobile.Data.ProjectRepository">
+            <summary>
+            Repository class for managing projects in the database.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.#ctor(TransportApp.Mobile.Data.TaskRepository,TransportApp.Mobile.Data.TagRepository,Microsoft.Extensions.Logging.ILogger{TransportApp.Mobile.Data.ProjectRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TransportApp.Mobile.Data.ProjectRepository"/> class.
+            </summary>
+            <param name="taskRepository">The task repository instance.</param>
+            <param name="tagRepository">The tag repository instance.</param>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Project table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.ListAsync">
+            <summary>
+            Retrieves a list of all projects from the database.
+            </summary>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.Project"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific project by its ID.
+            </summary>
+            <param name="id">The ID of the project.</param>
+            <returns>A <see cref="T:TransportApp.Mobile.Models.Project"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.SaveItemAsync(TransportApp.Mobile.Models.Project)">
+            <summary>
+            Saves a project to the database. If the project ID is 0, a new project is created; otherwise, the existing project is updated.
+            </summary>
+            <param name="item">The project to save.</param>
+            <returns>The ID of the saved project.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.DeleteItemAsync(TransportApp.Mobile.Models.Project)">
+            <summary>
+            Deletes a project from the database.
+            </summary>
+            <param name="item">The project to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.ProjectRepository.DropTableAsync">
+            <summary>
+            Drops the Project table from the database.
+            </summary>
+        </member>
+        <member name="T:TransportApp.Mobile.Data.TagRepository">
+            <summary>
+            Repository class for managing tags in the database.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.#ctor(Microsoft.Extensions.Logging.ILogger{TransportApp.Mobile.Data.TagRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TransportApp.Mobile.Data.TagRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Tag and ProjectsTags tables if they do not exist.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.ListAsync">
+            <summary>
+            Retrieves a list of all tags from the database.
+            </summary>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.Tag"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.ListAsync(System.Int32)">
+            <summary>
+            Retrieves a list of tags associated with a specific project.
+            </summary>
+            <param name="projectID">The ID of the project.</param>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.Tag"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific tag by its ID.
+            </summary>
+            <param name="id">The ID of the tag.</param>
+            <returns>A <see cref="T:TransportApp.Mobile.Models.Tag"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.SaveItemAsync(TransportApp.Mobile.Models.Tag)">
+            <summary>
+            Saves a tag to the database. If the tag ID is 0, a new tag is created; otherwise, the existing tag is updated.
+            </summary>
+            <param name="item">The tag to save.</param>
+            <returns>The ID of the saved tag.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.SaveItemAsync(TransportApp.Mobile.Models.Tag,System.Int32)">
+            <summary>
+            Saves a tag to the database and associates it with a specific project.
+            </summary>
+            <param name="item">The tag to save.</param>
+            <param name="projectID">The ID of the project.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.DeleteItemAsync(TransportApp.Mobile.Models.Tag)">
+            <summary>
+            Deletes a tag from the database.
+            </summary>
+            <param name="item">The tag to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.DeleteItemAsync(TransportApp.Mobile.Models.Tag,System.Int32)">
+            <summary>
+            Deletes a tag from a specific project in the database.
+            </summary>
+            <param name="item">The tag to delete.</param>
+            <param name="projectID">The ID of the project.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TagRepository.DropTableAsync">
+            <summary>
+            Drops the Tag and ProjectsTags tables from the database.
+            </summary>
+        </member>
+        <member name="T:TransportApp.Mobile.Data.TaskRepository">
+            <summary>
+            Repository class for managing tasks in the database.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.#ctor(Microsoft.Extensions.Logging.ILogger{TransportApp.Mobile.Data.TaskRepository})">
+            <summary>
+            Initializes a new instance of the <see cref="T:TransportApp.Mobile.Data.TaskRepository"/> class.
+            </summary>
+            <param name="logger">The logger instance.</param>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.Init">
+            <summary>
+            Initializes the database connection and creates the Task table if it does not exist.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.ListAsync">
+            <summary>
+            Retrieves a list of all tasks from the database.
+            </summary>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.ProjectTask"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.ListAsync(System.Int32)">
+            <summary>
+            Retrieves a list of tasks associated with a specific project.
+            </summary>
+            <param name="projectId">The ID of the project.</param>
+            <returns>A list of <see cref="T:TransportApp.Mobile.Models.ProjectTask"/> objects.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.GetAsync(System.Int32)">
+            <summary>
+            Retrieves a specific task by its ID.
+            </summary>
+            <param name="id">The ID of the task.</param>
+            <returns>A <see cref="T:TransportApp.Mobile.Models.ProjectTask"/> object if found; otherwise, null.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.SaveItemAsync(TransportApp.Mobile.Models.ProjectTask)">
+            <summary>
+            Saves a task to the database. If the task ID is 0, a new task is created; otherwise, the existing task is updated.
+            </summary>
+            <param name="item">The task to save.</param>
+            <returns>The ID of the saved task.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.DeleteItemAsync(TransportApp.Mobile.Models.ProjectTask)">
+            <summary>
+            Deletes a task from the database.
+            </summary>
+            <param name="item">The task to delete.</param>
+            <returns>The number of rows affected.</returns>
+        </member>
+        <member name="M:TransportApp.Mobile.Data.TaskRepository.DropTableAsync">
+            <summary>
+            Drops the Task table from the database.
+            </summary>
+        </member>
+        <member name="T:TransportApp.Mobile.PageModels.MainPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.Departures">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.departures"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.SelectedStopId">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.selectedStopId"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.IsBusy">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.isBusy"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.TodoCategoryData">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.todoCategoryData"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.TodoCategoryColors">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.todoCategoryColors"/>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.loadDeparturesCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.LoadDeparturesCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.LoadDeparturesCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.LoadDepartures"/>.</summary>
+        </member>
+        <member name="T:TransportApp.Mobile.Services.IErrorHandler">
+            <summary>
+            Error Handler Service.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Services.IErrorHandler.HandleError(System.Exception)">
+            <summary>
+            Handle error in UI.
+            </summary>
+            <param name="ex">Exception being thrown.</param>
+        </member>
+        <member name="T:TransportApp.Mobile.Services.ModalErrorHandler">
+            <summary>
+            Modal Error Handler.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Services.ModalErrorHandler.HandleError(System.Exception)">
+            <summary>
+            Handle error in UI.
+            </summary>
+            <param name="ex">Exception.</param>
+        </member>
+        <member name="T:TransportApp.Mobile.Utilities.ProjectExtensions">
+            <summary>
+            Project Model Extensions
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Utilities.ProjectExtensions.IsNullOrNew(TransportApp.Mobile.Models.Project)">
+            <summary>
+            Check if the project is null or new.
+            </summary>
+            <param name="project"></param>
+            <returns></returns>
+        </member>
+        <member name="T:TransportApp.Mobile.Utilities.TaskUtilities">
+            <summary>
+            Task Utilities.
+            </summary>
+        </member>
+        <member name="M:TransportApp.Mobile.Utilities.TaskUtilities.FireAndForgetSafeAsync(System.Threading.Tasks.Task,TransportApp.Mobile.Services.IErrorHandler)">
+            <summary>
+            Fire and Forget Safe Async.
+            </summary>
+            <param name="task">Task to Fire and Forget.</param>
+            <param name="handler">Error Handler.</param>
+        </member>
+        <member name="T:TransportApp.Mobile.Resource">
+            <summary>
+            Android Resource Designer class.
+            Exposes the Android Resource designer assembly into the project Namespace.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Boolean">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListProject">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListProjectTask">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ListTag">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Category">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Project">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ProjectsJson">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.ProjectTask">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Tag">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Int32">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.String">
+            <summary>
+            Defines the source generated JSON serialization contract metadata for a given type.
+            </summary>
+        </member>
+        <member name="P:JsonContext.Default">
+            <summary>
+            The default <see cref="T:System.Text.Json.Serialization.JsonSerializerContext"/> associated with a default <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance.
+            </summary>
+        </member>
+        <member name="P:JsonContext.GeneratedSerializerOptions">
+            <summary>
+            The source-generated options associated with this context.
+            </summary>
+        </member>
+        <member name="M:JsonContext.#ctor">
+            <inheritdoc/>
+        </member>
+        <member name="M:JsonContext.#ctor(System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:JsonContext.GetTypeInfo(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Button.TextColorTo(Microsoft.Maui.Controls.Button,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_DatePicker.TextColorTo(Microsoft.Maui.Controls.DatePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Editor.TextColorTo(Microsoft.Maui.Controls.Editor,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Entry.TextColorTo(Microsoft.Maui.Controls.Entry,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_InputView.TextColorTo(Microsoft.Maui.Controls.InputView,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Label.TextColorTo(Microsoft.Maui.Controls.Label,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_Picker.TextColorTo(Microsoft.Maui.Controls.Picker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_RadioButton.TextColorTo(Microsoft.Maui.Controls.RadioButton,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_SearchBar.TextColorTo(Microsoft.Maui.Controls.SearchBar,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="M:Microsoft.Maui.Controls.ColorAnimationExtensions_TimePicker.TextColorTo(Microsoft.Maui.Controls.TimePicker,Microsoft.Maui.Graphics.Color,System.UInt32,System.UInt32,Microsoft.Maui.Easing,System.Threading.CancellationToken)">
+            <summary>
+            Animates the TextColor of an <see cref = "T:Microsoft.Maui.ITextStyle"/> to the given color
+            </summary>
+            <param name = "element"></param>
+            <param name = "color">The target color to animate the <see cref = "P:Microsoft.Maui.ITextStyle.TextColor"/> to</param>
+            <param name = "rate">The time, in milliseconds, between the frames of the animation</param>
+            <param name = "length">The duration, in milliseconds, of the animation</param>
+            <param name = "easing">The easing function to be used in the animation</param>
+            <param name = "token"><see cref = "T:System.Threading.CancellationToken"/></param>
+            <returns>Value indicating if the animation completed successfully or not</returns>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Departures">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Departures" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedStopId">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedStopId" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TodoCategoryData">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TodoCategoryData" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.TodoCategoryColors">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "TodoCategoryColors" generated properties.</summary>
+        </member>
+        <member name="T:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs">
+            <summary>
+            A helper type providing cached, reusable <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instances
+            for all properties generated with <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservablePropertyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Departures">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Departures" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedStopId">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedStopId" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsBusy">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsBusy" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TodoCategoryData">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TodoCategoryData" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.TodoCategoryColors">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "TodoCategoryColors" generated properties.</summary>
+        </member>
+    </members>
+</doc>

@@ -64,6 +64,9 @@
       <MauiXaml Update="Pages\RoutePlannerPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>
+      <MauiXaml Update="Pages\SchedulePage.xaml">
+        <Generator>MSBuild:Compile</Generator>
+      </MauiXaml>
       <MauiXaml Update="Pages\StopDetailPage.xaml">
         <Generator>MSBuild:Compile</Generator>
       </MauiXaml>

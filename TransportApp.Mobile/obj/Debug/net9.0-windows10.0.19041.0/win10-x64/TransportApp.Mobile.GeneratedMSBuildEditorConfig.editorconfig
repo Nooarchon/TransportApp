@@ -95,6 +95,12 @@ build_metadata.AdditionalFiles.ManifestResourceName = TransportApp.Mobile.Pages.
 build_metadata.AdditionalFiles.TargetPath = Pages\RoutePlannerPage.xaml
 build_metadata.AdditionalFiles.RelativePath = Pages\RoutePlannerPage.xaml
 
+[C:/Users/julia/source/repos/TransportApp/TransportApp.Mobile/Pages/SchedulePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = TransportApp.Mobile.Pages.SchedulePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Pages\SchedulePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Pages\SchedulePage.xaml
+
 [C:/Users/julia/source/repos/TransportApp/TransportApp.Mobile/Pages/StopDetailPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = TransportApp.Mobile.Pages.StopDetailPage.xaml
