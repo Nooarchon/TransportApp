@@ -1,13 +1,22 @@
-using TransportApp.Mobile.Models;
-using TransportApp.Mobile.PageModels;
+﻿using TransportApp.Mobile.PageModels;
 
-namespace TransportApp.Mobile.Pages
+namespace TransportApp.Mobile.Pages;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage(MainPageModel model)
     {
-        public MainPage(MainPageModel model)
+        InitializeComponent();
+        BindingContext = model; // ВОТ ЭТА СТРОКА КРИТИЧЕСКИ ВАЖНА
+    
+}
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        // Автоматически загружаем данные при открытии
+        if (BindingContext is MainPageModel model)
         {
-            BindingContext = model;
+            await model.LoadDeparturesCommand.ExecuteAsync(null);
         }
     }
 }

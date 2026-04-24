@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-namespace TransportApp.Mobile.PageModels
+namespace TransportApp.Mobile.PageModels;
+
+public partial class ProjectDetailPageModel : ObservableObject
 {
-    public class ProjectDetailPageModel
-    {
-    }
+    [ObservableProperty] private string? name;
 }

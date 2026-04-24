@@ -37,29 +37,30 @@ namespace TransportApp.Mobile
             builder.Services.AddLogging(configure => configure.AddDebug());
 #endif
 
-            // --- Existing Repositories & Services ---
-            builder.Services.AddSingleton<ProjectRepository>();
-            builder.Services.AddSingleton<TaskRepository>();
-            builder.Services.AddSingleton<CategoryRepository>();
-            builder.Services.AddSingleton<TagRepository>();
-            builder.Services.AddSingleton<SeedDataService>();
-            builder.Services.AddSingleton<ModalErrorHandler>();
-
             // --- Transport App Services ---
-            // Singleton because we want one instance of the HttpClient/Cache
+
+            // 1. ОБЯЗАТЕЛЬНО: Регистрируем HttpClient. 
+            // Без него ApiService не создастся, так как он требует его в конструкторе.
+            builder.Services.AddSingleton<HttpClient>();
+
+            // 2. Регистрируем сам сервис API
             builder.Services.AddSingleton<ApiService>();
 
             // --- PageModels (ViewModels) ---
             builder.Services.AddSingleton<MainPageModel>();
-      
             builder.Services.AddSingleton<ManageMetaPageModel>();
 
-            // --- Navigation Routes ---
-            // Using AddTransientWithShellRoute links the Page to the PageModel and registers the route
-     
+            // Добавляем модели для остальных страниц из твоего проекта
+            builder.Services.AddTransient<ProjectDetailPageModel>();
+            builder.Services.AddTransient<StopDetailPageModel>();
+            builder.Services.AddTransient<RoutePlannerPageModel>();
+
+            // --- Pages (Страницы) ---
+            // Регистрация самих страниц, чтобы DI мог прокинуть в них PageModel через конструктор
+            builder.Services.AddTransient<MainPage>();
+            builder.Services.AddTransient<SchedulePage>(); // Твоя страница расписания
             builder.Services.AddTransientWithShellRoute<TaskDetailPage, TaskDetailPageModel>("task");
 
-           
             return builder.Build();
         }
     }

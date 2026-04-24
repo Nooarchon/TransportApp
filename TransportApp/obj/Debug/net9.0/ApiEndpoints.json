@@ -18,7 +18,7 @@
     ]
   },
   {
-    "ContainingType": "StopsController",
+    "ContainingType": "TransportApp.Controllers.StopsController",
     "Method": "GetStops",
     "RelativePath": "api/stops",
     "HttpMethod": "GET",
@@ -28,15 +28,15 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "StopsController",
+    "ContainingType": "TransportApp.Controllers.StopsController",
     "Method": "GetDepartures",
-    "RelativePath": "api/stops/{stopId}/departures",
+    "RelativePath": "api/stops/{id}/departures",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "stopId",
+        "Name": "id",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -44,7 +44,7 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "StopsController",
+    "ContainingType": "TransportApp.Controllers.StopsController",
     "Method": "GetRoute",
     "RelativePath": "api/stops/route",
     "HttpMethod": "GET",

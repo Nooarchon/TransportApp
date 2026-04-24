@@ -1,12 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
+using TransportApp.Mobile.Models;
 
-namespace TransportApp.Mobile.PageModels // Keep it here
+namespace TransportApp.Mobile.PageModels;
+
+public partial class ProjectListPageModel : ObservableObject
 {
-    public class ProjectListPageModel // Make sure 'public' is here
-    {
-    }
+    [ObservableProperty] private ObservableCollection<Project> projects = new();
+
+    [RelayCommand] private async Task Appearing() => await Task.CompletedTask;
+    [RelayCommand] private async Task NavigateToProject(Project project) => await Task.CompletedTask;
+    [RelayCommand] private async Task AddProject() => await Task.CompletedTask;
 }

@@ -1,5 +1,5 @@
-﻿using System;
-using System.Net.Http.Json;
+﻿using System.Net.Http.Json;
+using System.Text.Json;
 using TransportApp.Mobile.Models;
 
 namespace TransportApp.Mobile.Services;
@@ -8,23 +8,49 @@ public class ApiService
 {
     private readonly HttpClient _http;
 
-    // Автоматический выбор адреса: 10.0.2.2 для Android, localhost для остальных
-    private static string BaseUrl = DeviceInfo.Platform == DevicePlatform.Android
-                                    ? "http://10.0.2.2:5000/api/stops"
-                                    : "http://localhost:5000/api/stops";
+    // Для Windows Machine используем localhost. Убедись, что порт 59763 актуален.
+    private static string BaseUrl = "https://localhost:59763/";
 
-    public ApiService()
+    public ApiService(HttpClient httpClient)
     {
-        // Устанавливаем таймаут, чтобы приложение не зависало вечно при отсутствии связи
-        _http = new HttpClient { Timeout = TimeSpan.FromSeconds(10) };
+        // Игнорируем ошибки SSL-сертификата для локальной разработки на Windows
+        var handler = new HttpClientHandler();
+        handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) => true;
+
+        _http = new HttpClient(handler);
+        _http.BaseAddress = new Uri(BaseUrl);
+        _http.Timeout = TimeSpan.FromSeconds(15);
     }
 
-    public async Task<List<TransportStop>> GetStopsAsync() =>
-        await _http.GetFromJsonAsync<List<TransportStop>>(BaseUrl) ?? new();
+    public async Task<List<StopDeparture>> GetDeparturesAsync(string stopId)
+    {
+        try
+        {
+            // Настройка: игнорируем регистр букв в JSON (например, route_short_name vs Route_Short_Name)
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
 
-    public async Task<List<StopDeparture>> GetDeparturesAsync(string stopId) =>
-        await _http.GetFromJsonAsync<List<StopDeparture>>($"{BaseUrl}/{stopId}/departures") ?? new();
+            // Выполняем запрос
+            var result = await _http.GetFromJsonAsync<List<StopDeparture>>($"api/stops/{stopId}/departures", options);
 
-    public async Task<List<string>> GetRouteAsync(string from, string to) =>
-        await _http.GetFromJsonAsync<List<string>>($"{BaseUrl}/route?from={from}&to={to}") ?? new();
+            if (result != null)
+            {
+                System.Diagnostics.Debug.WriteLine($"---> СЕТЬ: УСПЕХ! Получено {result.Count} записей для остановки {stopId}");
+            }
+            else
+            {
+                System.Diagnostics.Debug.WriteLine("---> СЕТЬ: Сервер вернул пустой результат.");
+            }
+
+            return result ?? new List<StopDeparture>();
+        }
+        catch (Exception ex)
+        {
+            // Если здесь появится ошибка "Connection refused", значит API не запущено или порт неверный
+            System.Diagnostics.Debug.WriteLine($"---> СЕТЬ: КРИТИЧЕСКАЯ ОШИБКА: {ex.Message}");
+            return new List<StopDeparture>();
+        }
+    }
 }

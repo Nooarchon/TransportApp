@@ -13,15 +13,12 @@
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference OverviewPage}, x:DataType=ContentPage}"
                 EventName="NavigatedTo"
                 Command="{Binding NavigatedToCommand}" />
         <toolkit:EventToCommandBehavior
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference OverviewPage}, x:DataType=ContentPage}"
                 EventName="NavigatedFrom"
                 Command="{Binding NavigatedFromCommand}" />
         <toolkit:EventToCommandBehavior
-                BindingContext="{Binding Path=BindingContext, Source={x:Reference OverviewPage}, x:DataType=ContentPage}"
                 EventName="Appearing"                
                 Command="{Binding AppearingCommand}" />
     </ContentPage.Behaviors>
@@ -36,27 +33,38 @@
         <pullToRefresh:SfPullToRefresh
             IsRefreshing="{Binding IsRefreshing}"
             RefreshCommand="{Binding RefreshCommand}">
+
             <pullToRefresh:SfPullToRefresh.PullableContent>
                 <ScrollView>
-                    <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}" Padding="{StaticResource LayoutPadding}">
-                        <controls:CategoryChart />
-                        <Label Text="Ближайшее расписание" Style="{StaticResource Title2}" Margin="0,10,0,0"/>
+                    <VerticalStackLayout Spacing="{StaticResource LayoutSpacing}" 
+                                         Padding="{StaticResource LayoutPadding}">
 
-                        <CollectionView ItemsSource="{Binding Departures}" HeightRequest="250">
+                        <controls:CategoryChart />
+
+                        <Label Text="Ближайшее расписание" 
+                               Style="{StaticResource Title2}" 
+                               Margin="0,10,0,0"/>
+
+                        <CollectionView ItemsSource="{Binding Departures}">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate x:DataType="models:StopDeparture">
-                                    <Grid Padding="10" ColumnDefinitions="Auto, *, Auto">
-                                        <Label Text="{Binding route_short_name}" FontAttributes="Bold" Padding="0,0,10,0" />
-                                        <Label Grid.Column="1" Text="{Binding trip_headsign}" LineBreakMode="TailTruncation" />
-                                        <Label Grid.Column="2" Text="{Binding arrival_time}" HorizontalOptions="End" />
-                                    </Grid>
+                                    <VerticalStackLayout Padding="5">
+                                        <Label Text="{Binding route_short_name}" FontAttributes="Bold" />
+                                        <Label Text="{Binding trip_headsign}" />
+                                        <Label Text="{Binding arrival_time}" TextColor="Gray" />
+                                    </VerticalStackLayout>
                                 </DataTemplate>
                             </CollectionView.ItemTemplate>
+
                             <CollectionView.EmptyView>
-                                <Label Text="Данных пока нет. Потяните вниз для обновления." HorizontalOptions="Center" VerticalOptions="Center" />
+                                <Label Text="Нет данных. Потяните вниз для обновления." 
+                                       HorizontalOptions="Center" 
+                                       Margin="20" 
+                                       TextColor="Gray"/>
                             </CollectionView.EmptyView>
                         </CollectionView>
-                        <Grid HeightRequest="44">
+
+                        <Grid HeightRequest="44" Margin="0,15,0,0">
                             <Label Text="Tasks" Style="{StaticResource Title2}" VerticalOptions="Center"/>
                             <ImageButton 
                                 Source="{StaticResource IconClean}"
@@ -69,14 +77,17 @@
                                 Command="{Binding CleanTasksCommand}"
                                 SemanticProperties.Description="Clean tasks" />
                         </Grid>
+
                         <VerticalStackLayout Spacing="15"
-                            BindableLayout.ItemsSource="{Binding Tasks}">
+                                             BindableLayout.ItemsSource="{Binding Tasks}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate>
-                                    <controls:TaskView TaskCompletedCommand="{Binding TaskCompletedCommand, Source={RelativeSource AncestorType={x:Type pageModels:MainPageModel}}, x:DataType=pageModels:MainPageModel}" />
+                                    <controls:TaskView 
+                                        TaskCompletedCommand="{Binding BindingContext.TaskCompletedCommand, Source={x:Reference OverviewPage}}" />
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
                         </VerticalStackLayout>
+
                     </VerticalStackLayout>
                 </ScrollView>
             </pullToRefresh:SfPullToRefresh.PullableContent>
