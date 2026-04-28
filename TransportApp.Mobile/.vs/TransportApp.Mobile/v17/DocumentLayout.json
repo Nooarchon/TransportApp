@@ -3,16 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:appshell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pages\\stopdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pages\\stopdetailpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pages\\stopdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pages\\stopdetailpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pages\\mainpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pagemodels\\mainpagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pagemodels\\mainpagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|solutionrelative:pages\\mainpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{1ABA3B9D-3618-485C-AF38-087377D15A58}|TransportApp.Mobile.csproj|c:\\users\\julia\\source\\repos\\transportapp\\transportapp.mobile\\pagemodels\\routeplannerpagemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,50 +38,89 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppShell.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\AppShell.xaml.cs",
+              "RelativeDocumentMoniker": "AppShell.xaml.cs",
+              "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\AppShell.xaml.cs",
+              "RelativeToolTip": "AppShell.xaml.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAQwDMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T08:21:45.457Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "StopDetailPage.xaml",
+              "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\StopDetailPage.xaml",
+              "RelativeDocumentMoniker": "Pages\\StopDetailPage.xaml",
+              "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\StopDetailPage.xaml",
+              "RelativeToolTip": "Pages\\StopDetailPage.xaml",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwCIAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-04-28T08:00:33.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StopDetailPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\StopDetailPage.xaml.cs",
+              "RelativeDocumentMoniker": "Pages\\StopDetailPage.xaml.cs",
+              "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\StopDetailPage.xaml.cs",
+              "RelativeToolTip": "Pages\\StopDetailPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-28T07:59:42.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainPageModel.cs",
               "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\PageModels\\MainPageModel.cs",
               "RelativeDocumentMoniker": "PageModels\\MainPageModel.cs",
               "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\PageModels\\MainPageModel.cs",
               "RelativeToolTip": "PageModels\\MainPageModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAiwEoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T10:01:07.219Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "MainPage.xaml",
               "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\MainPage.xaml",
               "RelativeDocumentMoniker": "Pages\\MainPage.xaml",
               "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\MainPage.xaml",
               "RelativeToolTip": "Pages\\MainPage.xaml",
-              "ViewState": "AgIAADsAAAAAAAAAAAAgwGMAAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAgwCoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2026-04-24T10:00:31.155Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "MainPage.xaml.cs",
               "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\MainPage.xaml.cs",
               "RelativeDocumentMoniker": "Pages\\MainPage.xaml.cs",
               "ToolTip": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\Pages\\MainPage.xaml.cs",
               "RelativeToolTip": "Pages\\MainPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-04-24T10:00:00.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "RoutePlannerPageModel.cs",
               "DocumentMoniker": "C:\\Users\\julia\\source\\repos\\TransportApp\\TransportApp.Mobile\\PageModels\\RoutePlannerPageModel.cs",
               "RelativeDocumentMoniker": "PageModels\\RoutePlannerPageModel.cs",
@@ -77,8 +128,7 @@
               "RelativeToolTip": "PageModels\\RoutePlannerPageModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-04-24T09:52:06.786Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-24T09:52:06.786Z"
             }
           ]
         }

@@ -13,33 +13,23 @@ public partial class MainPageModel : ObservableObject
     public MainPageModel(ApiService apiService)
     {
         _api = apiService;
-        // Временно добавим это, чтобы данные загрузились сразу при создании
-        Task.Run(async () => await LoadDepartures());
+        // Загружаем данные при старте
+        _ = LoadDepartures();
     }
 
     [ObservableProperty] private string today = DateTime.Now.ToString("dd MMMM");
     [ObservableProperty] private bool isBusy;
     [ObservableProperty] private bool isRefreshing;
-    [ObservableProperty] private string selectedStopId = "U123z1P";
 
-    // ОСТАВЛЯЕМ ТОЛЬКО ЭТО. Генератор сам создаст публичное свойство "Departures"
+    // Используем ID, для которого в базе точно есть записи (T53047)
+    [ObservableProperty] private string selectedStopId = "T53047";
+
     [ObservableProperty]
     private ObservableCollection<StopDeparture> departures = new();
 
-    // Заглушки (если они нужны для XAML)
-    [ObservableProperty] private ObservableCollection<Project> projects = new();
+    // Заглушки для UI (чтобы не было ошибок в XAML)
     [ObservableProperty] private ObservableCollection<ProjectTask> tasks = new();
     [ObservableProperty] private bool hasCompletedTasks;
-
-    [ObservableProperty] private ObservableCollection<double> todoCategoryData = new();
-    [ObservableProperty] private ObservableCollection<Color> todoCategoryColors = new();
-
-    [RelayCommand]
-    private async Task TaskCompleted(ProjectTask task)
-    {
-        // Логика завершения задачи
-        await Task.CompletedTask;
-    }
 
     [RelayCommand]
     public async Task LoadDepartures()
@@ -50,24 +40,32 @@ public partial class MainPageModel : ObservableObject
             IsBusy = true;
             var data = await _api.GetDeparturesAsync(SelectedStopId);
 
-            // Работаем в основном потоке интерфейса
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 Departures.Clear();
-                if (data != null)
+                if (data != null && data.Count > 0)
                 {
                     foreach (var item in data)
                     {
                         Departures.Add(item);
                     }
-                    // Отладочный вывод: если это появится в Output, значит данные в коде есть
-                    System.Diagnostics.Debug.WriteLine($"---> Добавлено {Departures.Count} элементов в коллекцию");
+                    System.Diagnostics.Debug.WriteLine($"---> УСПЕХ: В список добавлено {Departures.Count} строк.");
+                }
+                else
+                {
+                    // Если API вернул пустой список, показываем одну тестовую строку
+                    Departures.Add(new StopDeparture
+                    {
+                        route_short_name = "INFO",
+                        trip_headsign = "Нет рейсов для этой остановки",
+                        arrival_time = "--:--"
+                    });
                 }
             });
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"Ошибка загрузки: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"---> КРИТИЧЕСКАЯ ОШИБКА API: {ex.Message}");
         }
         finally
         {
@@ -76,12 +74,28 @@ public partial class MainPageModel : ObservableObject
         }
     }
 
+    // Команды жизненного цикла страницы
     [RelayCommand] private async Task Refresh() => await LoadDepartures();
     [RelayCommand] private async Task Appearing() => await LoadDepartures();
 
-    // Остальные пустые команды для компиляции
+    // Заглушки команд, чтобы UI не выдавал ошибок привязке
     [RelayCommand] private Task NavigatedTo() => Task.CompletedTask;
+
+    // MainPageModel.cs
+    [RelayCommand]
+    private async Task GoToStopDetails(StopDeparture departure)
+    {
+        if (departure == null) return;
+
+        // Переходим на страницу деталей, которую мы зарегистрировали в AppShell
+        await Shell.Current.GoToAsync(nameof(StopDetailPage), new Dictionary<string, object>
+    {
+        { "SelectedStop", departure }
+    });
+    }
+
     [RelayCommand] private Task NavigatedFrom() => Task.CompletedTask;
     [RelayCommand] private Task AddTask() => Task.CompletedTask;
     [RelayCommand] private Task CleanTasks() => Task.CompletedTask;
+    [RelayCommand] private Task TaskCompleted(ProjectTask task) => Task.CompletedTask;
 }

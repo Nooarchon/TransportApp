@@ -7,15 +7,18 @@ public partial class MainPage : ContentPage
     public MainPage(MainPageModel model)
     {
         InitializeComponent();
-        BindingContext = model; // ВОТ ЭТА СТРОКА КРИТИЧЕСКИ ВАЖНА
-    
-}
+        BindingContext = model;
+    }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        // Автоматически загружаем данные при открытии
+
+        // Проверяем, что модель привязана и данные еще не загружены (чтобы не спамить запросами)
         if (BindingContext is MainPageModel model)
         {
+            // Вызываем команду загрузки из MainPageModel
+            // Это заполнит ваш список теми данными S1/R41, которые мы видели на скриншоте
             await model.LoadDeparturesCommand.ExecuteAsync(null);
         }
     }

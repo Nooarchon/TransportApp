@@ -2,6 +2,34 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TransportApp.Mobile.Pages.RoutePlannerPage"
-             Title="Route Planner">
-    <Label Text="Route Planner Coming Soon" VerticalOptions="Center" HorizontalOptions="Center" />
+             Title="Планировщик">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label Text="Куда поедем?" FontSize="28" FontAttributes="Bold" Margin="0,0,0,10"/>
+
+            <Label Text="Оправная точка" FontSize="14" TextColor="Gray"/>
+            <Frame Padding="10,0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                <Entry Placeholder="Откуда (например, T53041)" HeightRequest="45"/>
+            </Frame>
+
+            <Label Text="Точка назначения" FontSize="14" TextColor="Gray" Margin="0,10,0,0"/>
+            <Frame Padding="10,0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
+                <Entry Placeholder="Куда (например, Praha hl.n.)" HeightRequest="45"/>
+            </Frame>
+
+            <Button Text="Найти маршруты" 
+                    BackgroundColor="{StaticResource Primary}"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    CornerRadius="25"
+                    Margin="0,20,0,0"/>
+
+            <BoxView HeightRequest="1" Color="LightGray" Margin="0,20"/>
+
+            <Label Text="Недавние маршруты" FontSize="16" FontAttributes="Bold"/>
+            <Label Text="История пуста" HorizontalOptions="Center" TextColor="Gray" Margin="0,20"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

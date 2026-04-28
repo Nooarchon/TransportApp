@@ -9,7 +9,7 @@ public class ApiService
     private readonly HttpClient _http;
 
     // Для Windows Machine используем localhost. Убедись, что порт 59763 актуален.
-    private static string BaseUrl = "https://localhost:59763/";
+    private static string BaseUrl = "http://localhost:59764/";
 
     public ApiService(HttpClient httpClient)
     {
@@ -26,31 +26,28 @@ public class ApiService
     {
         try
         {
-            // Настройка: игнорируем регистр букв в JSON (например, route_short_name vs Route_Short_Name)
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
+            System.Diagnostics.Debug.WriteLine($"---> ПОПЫТКА ЗАПРОСА: {_http.BaseAddress}api/stops/{stopId}/departures");
 
-            // Выполняем запрос
-            var result = await _http.GetFromJsonAsync<List<StopDeparture>>($"api/stops/{stopId}/departures", options);
+            var response = await _http.GetAsync($"api/stops/{stopId}/departures");
 
-            if (result != null)
+            if (!response.IsSuccessStatusCode)
             {
-                System.Diagnostics.Debug.WriteLine($"---> СЕТЬ: УСПЕХ! Получено {result.Count} записей для остановки {stopId}");
-            }
-            else
-            {
-                System.Diagnostics.Debug.WriteLine("---> СЕТЬ: Сервер вернул пустой результат.");
+                System.Diagnostics.Debug.WriteLine($"---> СЕРВЕР ОТВЕТИЛ ОШИБКОЙ: {response.StatusCode}");
+                return new List<StopDeparture>();
             }
 
-            return result ?? new List<StopDeparture>();
+            var result = await response.Content.ReadFromJsonAsync<List<StopDeparture>>();
+            System.Diagnostics.Debug.WriteLine($"---> ДАННЫЕ ПОЛУЧЕНЫ! Количество: {result?.Count ?? 0}");
+            return result ?? new();
         }
         catch (Exception ex)
         {
-            // Если здесь появится ошибка "Connection refused", значит API не запущено или порт неверный
-            System.Diagnostics.Debug.WriteLine($"---> СЕТЬ: КРИТИЧЕСКАЯ ОШИБКА: {ex.Message}");
+            // Если здесь вылетает "HttpRequestException", значит IP или порт недоступны
+            System.Diagnostics.Debug.WriteLine($"---> КРИТИЧЕСКАЯ ОШИБКА СЕТИ: {ex.Message}");
+            if (ex.InnerException != null)
+                System.Diagnostics.Debug.WriteLine($"---> ПРИЧИНА: {ex.InnerException.Message}");
             return new List<StopDeparture>();
         }
     }
+
 }
