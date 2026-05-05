@@ -4,8 +4,9 @@
              xmlns:models="clr-namespace:TransportApp.Mobile.Models"
              xmlns:local="clr-namespace:TransportApp.Mobile.Pages"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:pageModels="clr-namespace:TransportApp.Mobile.PageModels"
              x:Class="TransportApp.Mobile.Pages.StopDetailPage"
-             x:DataType="local:StopDetailPage"
+             x:DataType="pageModels:StopDetailPageModel" 
              Title="Детали рейса">
 
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="15">

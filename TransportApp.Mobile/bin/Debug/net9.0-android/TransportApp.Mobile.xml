@@ -238,34 +238,57 @@
             <inheritdoc/>
             <inheritdoc/>
             <inheritdoc/>
-            <inheritdoc/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.Today">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.today"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._today"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.IsBusy">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.isBusy"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._isBusy"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.IsRefreshing">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.isRefreshing"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._isRefreshing"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.SelectedStopId">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.selectedStopId"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._selectedStopId"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.Departures">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.departures"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._departures"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.SearchText">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._searchText"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.FoundStops">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._foundStops"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.IsSearching">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._isSearching"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.Tasks">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.tasks"/>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.HasCompletedTasks">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel.hasCompletedTasks"/>
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.MainPageModel._tasks"/>
         </member>
         <member name="F:TransportApp.Mobile.PageModels.MainPageModel.loadDeparturesCommand">
             <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.LoadDeparturesCommand"/>.</summary>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.LoadDeparturesCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.LoadDepartures"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.searchStopsCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.SearchStopsCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.SearchStopsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.SearchStops"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.selectStopCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.SelectStopCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.SelectStopCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.SelectStop(TransportApp.Mobile.Models.Stop)"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.goToStopDetailsCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetailsCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetailsCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetails(TransportApp.Mobile.Models.StopDeparture)"/>.</summary>
         </member>
         <member name="F:TransportApp.Mobile.PageModels.MainPageModel.refreshCommand">
             <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.RefreshCommand"/>.</summary>
@@ -285,35 +308,11 @@
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.NavigatedToCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.NavigatedTo"/>.</summary>
         </member>
-        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.goToStopDetailsCommand">
-            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetailsCommand"/>.</summary>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetailsCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.GoToStopDetails(TransportApp.Mobile.Models.StopDeparture)"/>.</summary>
-        </member>
         <member name="F:TransportApp.Mobile.PageModels.MainPageModel.navigatedFromCommand">
             <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.NavigatedFromCommand"/>.</summary>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.MainPageModel.NavigatedFromCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.NavigatedFrom"/>.</summary>
-        </member>
-        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.addTaskCommand">
-            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.AddTaskCommand"/>.</summary>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.AddTaskCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.AddTask"/>.</summary>
-        </member>
-        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.cleanTasksCommand">
-            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.CleanTasksCommand"/>.</summary>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.CleanTasksCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.CleanTasks"/>.</summary>
-        </member>
-        <member name="F:TransportApp.Mobile.PageModels.MainPageModel.taskCompletedCommand">
-            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.MainPageModel.TaskCompletedCommand"/>.</summary>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.MainPageModel.TaskCompletedCommand">
-            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.MainPageModel.TaskCompleted(TransportApp.Mobile.Models.ProjectTask)"/>.</summary>
         </member>
         <member name="T:TransportApp.Mobile.PageModels.ManageMetaPageModel">
             <inheritdoc/>
@@ -412,6 +411,79 @@
         </member>
         <member name="P:TransportApp.Mobile.PageModels.ProjectListPageModel.AddProjectCommand">
             <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.ProjectListPageModel.AddProject"/>.</summary>
+        </member>
+        <member name="T:TransportApp.Mobile.PageModels.RoutePlannerPageModel">
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+            <inheritdoc/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.OriginText">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._originText"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.DestinationText">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._destinationText"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.IsSearching">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._isSearching"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.OriginSuggestions">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._originSuggestions"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.DestinationSuggestions">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._destinationSuggestions"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.CalculatedRoute">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._calculatedRoute"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectedOrigin">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._selectedOrigin"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectedDestination">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._selectedDestination"/>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.searchOriginCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchOriginCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchOriginCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchOrigin"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.searchDestinationCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchDestinationCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchDestinationCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchDestination"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.selectOriginCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectOriginCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectOriginCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectOrigin(TransportApp.Mobile.Models.Stop)"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.selectDestinationCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectDestinationCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectDestinationCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IRelayCommand`1"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectDestination(TransportApp.Mobile.Models.Stop)"/>.</summary>
+        </member>
+        <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.findRouteCommand">
+            <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.FindRouteCommand"/>.</summary>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.FindRouteCommand">
+            <summary>Gets an <see cref="T:CommunityToolkit.Mvvm.Input.IAsyncRelayCommand"/> instance wrapping <see cref="M:TransportApp.Mobile.PageModels.RoutePlannerPageModel.FindRoute"/>.</summary>
+        </member>
+        <member name="T:TransportApp.Mobile.PageModels.StopDetailPageModel">
+            <inheritdoc/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.StopDetailPageModel.SelectedStop">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.StopDetailPageModel.selectedStop"/>
+        </member>
+        <member name="M:TransportApp.Mobile.PageModels.StopDetailPageModel.OnSelectedStopChanged(TransportApp.Mobile.Models.StopDeparture)">
+            <summary>Executes the logic for when <see cref="P:TransportApp.Mobile.PageModels.StopDetailPageModel.SelectedStop"/> just changed.</summary>
+            <param name="value">The new property value that was set.</param>
+            <remarks>This method is invoked right after the value of <see cref="P:TransportApp.Mobile.PageModels.StopDetailPageModel.SelectedStop"/> is changed.</remarks>
         </member>
         <member name="T:TransportApp.Mobile.PageModels.TaskDetailPageModel">
             <inheritdoc/>
@@ -715,11 +787,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Departures">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Departures" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SearchText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SearchText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.FoundStops">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "FoundStops" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsSearching">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsSearching" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Tasks">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Tasks" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.HasCompletedTasks">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "HasCompletedTasks" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Categories">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Categories" generated properties.</summary>
@@ -732,6 +810,30 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Projects">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Projects" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.OriginText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "OriginText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DestinationText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DestinationText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.OriginSuggestions">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "OriginSuggestions" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DestinationSuggestions">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DestinationSuggestions" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CalculatedRoute">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CalculatedRoute" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedOrigin">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedOrigin" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDestination">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDestination" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedStop">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedStop" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.Title">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "Title" generated properties.</summary>
@@ -769,11 +871,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Departures">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Departures" generated properties.</summary>
         </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SearchText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SearchText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.FoundStops">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "FoundStops" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsSearching">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsSearching" generated properties.</summary>
+        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Tasks">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Tasks" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.HasCompletedTasks">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "HasCompletedTasks" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Categories">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Categories" generated properties.</summary>
@@ -786,6 +894,30 @@
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Projects">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Projects" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.OriginText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "OriginText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DestinationText">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DestinationText" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.OriginSuggestions">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "OriginSuggestions" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DestinationSuggestions">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DestinationSuggestions" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CalculatedRoute">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CalculatedRoute" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedOrigin">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedOrigin" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDestination">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDestination" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedStop">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedStop" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.Title">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "Title" generated properties.</summary>

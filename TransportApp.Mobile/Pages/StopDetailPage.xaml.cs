@@ -1,20 +1,28 @@
 ﻿using TransportApp.Mobile.Models;
+using TransportApp.Mobile.PageModels;
 
 namespace TransportApp.Mobile.Pages;
 
+// QueryProperty связывает параметр из навигации со свойством в ЭТОМ классе
 [QueryProperty(nameof(SelectedStop), "SelectedStop")]
 public partial class StopDetailPage : ContentPage
 {
-    private StopDeparture? _selectedStop; // Добавьте '?' здесь
     public StopDeparture? SelectedStop
     {
-        get => _selectedStop;
-        set { _selectedStop = value; OnPropertyChanged(); }
+        // Используем 'SelectedStop' с БОЛЬШОЙ буквы — его создал генератор
+        get => (BindingContext as StopDetailPageModel)?.SelectedStop;
+        set
+        {
+            if (BindingContext is StopDetailPageModel vm)
+            {
+                vm.SelectedStop = value;
+            }
+        }
     }
 
-    public StopDetailPage()
+    public StopDetailPage(StopDetailPageModel viewModel)
     {
         InitializeComponent();
-        BindingContext = this;
+        BindingContext = viewModel;
     }
 }

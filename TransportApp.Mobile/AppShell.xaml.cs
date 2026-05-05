@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using Font = Microsoft.Maui.Font;
-// Добавляем пространство имен ваших страниц, чтобы Routing их видел
 using TransportApp.Mobile.Pages;
 
 namespace TransportApp.Mobile

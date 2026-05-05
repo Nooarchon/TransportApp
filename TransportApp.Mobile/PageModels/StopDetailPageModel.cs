@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using TransportApp.Mobile.Models;
 
-namespace TransportApp.Mobile.PageModels
+namespace TransportApp.Mobile.PageModels;
+[QueryProperty(nameof(SelectedStop), "SelectedStop")]
+public partial class StopDetailPageModel : ObservableObject
 {
-    // Ensure it is PUBLIC, PARTIAL, and inherits OBSERVABLEOBJECT
-    public partial class StopDetailPageModel : ObservableObject
+    [ObservableProperty]
+    private StopDeparture? selectedStop;
+
+    partial void OnSelectedStopChanged(StopDeparture value)
     {
+        System.Diagnostics.Debug.WriteLine($"=== ПОЛУЧЕН SelectedStop: {value?.route_short_name} ===");
     }
+
 }
+

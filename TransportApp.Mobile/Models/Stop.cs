@@ -2,24 +2,35 @@
 
 namespace TransportApp.Mobile.Models;
 
-public class StopDeparture
-{
-    [JsonPropertyName("route_short_name")]
-    public string? route_short_name { get; set; } // Добавлен ?
-
-    [JsonPropertyName("trip_headsign")]
-    public string? trip_headsign { get; set; } // Добавлен ?
-
-    [JsonPropertyName("arrival_time")]
-    public string? arrival_time { get; set; } // Добавлен ?
-}
-
 public class Stop
 {
-    public string? stop_id { get; set; }
-    public string? stop_name { get; set; }
+    [JsonPropertyName("stop_id")]
+    public string stop_id { get; set; }
+
+    [JsonPropertyName("stop_name")]
+    public string stop_name { get; set; }
+
+    [JsonPropertyName("stop_lat")]
+    public double stop_lat { get; set; }
+
+    [JsonPropertyName("stop_lon")]
+    public double stop_lon { get; set; }
+}
+
+public class StopDeparture
+{
+    [JsonPropertyName("trip_id")]
     public string? trip_id { get; set; }
-    public string? route_short_name { get; set; }
-    public string? trip_headsign { get; set; }
+
+    [JsonPropertyName("arrival_time")]
     public string? arrival_time { get; set; }
+
+    [JsonPropertyName("departure_time")]
+    public string? departure_time { get; set; }
+
+    [JsonPropertyName("route_short_name")]
+    public string? route_short_name { get; set; }
+
+    [JsonPropertyName("trip_headsign")]
+    public string? trip_headsign { get; set; }
 }

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using TransportApp.Mobile.Models;
 using TransportApp.Mobile.Services;
+using TransportApp.Mobile.Pages;
 
 namespace TransportApp.Mobile.PageModels;
 
@@ -13,23 +14,21 @@ public partial class MainPageModel : ObservableObject
     public MainPageModel(ApiService apiService)
     {
         _api = apiService;
-        // Загружаем данные при старте
         _ = LoadDepartures();
     }
 
-    [ObservableProperty] private string today = DateTime.Now.ToString("dd MMMM");
-    [ObservableProperty] private bool isBusy;
-    [ObservableProperty] private bool isRefreshing;
+    // Updated date format to English (e.g., 05 May)
+    [ObservableProperty] private string _today = DateTime.Now.ToString("dd MMMM");
+    [ObservableProperty] private bool _isBusy;
+    [ObservableProperty] private bool _isRefreshing;
+    [ObservableProperty] private string _selectedStopId = "T53047";
+    [ObservableProperty] private ObservableCollection<StopDeparture> _departures = new();
 
-    // Используем ID, для которого в базе точно есть записи (T53047)
-    [ObservableProperty] private string selectedStopId = "T53047";
+    [ObservableProperty] private string _searchText;
+    [ObservableProperty] private ObservableCollection<Stop> _foundStops = new();
+    [ObservableProperty] private bool _isSearching;
 
-    [ObservableProperty]
-    private ObservableCollection<StopDeparture> departures = new();
-
-    // Заглушки для UI (чтобы не было ошибок в XAML)
-    [ObservableProperty] private ObservableCollection<ProjectTask> tasks = new();
-    [ObservableProperty] private bool hasCompletedTasks;
+    public bool IsSuggestionsVisible => FoundStops?.Count > 0;
 
     [RelayCommand]
     public async Task LoadDepartures()
@@ -45,19 +44,15 @@ public partial class MainPageModel : ObservableObject
                 Departures.Clear();
                 if (data != null && data.Count > 0)
                 {
-                    foreach (var item in data)
-                    {
-                        Departures.Add(item);
-                    }
-                    System.Diagnostics.Debug.WriteLine($"---> УСПЕХ: В список добавлено {Departures.Count} строк.");
+                    foreach (var item in data) Departures.Add(item);
                 }
                 else
                 {
-                    // Если API вернул пустой список, показываем одну тестовую строку
+                    // English placeholder for empty results
                     Departures.Add(new StopDeparture
                     {
                         route_short_name = "INFO",
-                        trip_headsign = "Нет рейсов для этой остановки",
+                        trip_headsign = "No departures for this stop",
                         arrival_time = "--:--"
                     });
                 }
@@ -65,7 +60,7 @@ public partial class MainPageModel : ObservableObject
         }
         catch (Exception ex)
         {
-            System.Diagnostics.Debug.WriteLine($"---> КРИТИЧЕСКАЯ ОШИБКА API: {ex.Message}");
+            System.Diagnostics.Debug.WriteLine($"---> ERROR: {ex.Message}");
         }
         finally
         {
@@ -74,28 +69,66 @@ public partial class MainPageModel : ObservableObject
         }
     }
 
-    // Команды жизненного цикла страницы
-    [RelayCommand] private async Task Refresh() => await LoadDepartures();
-    [RelayCommand] private async Task Appearing() => await LoadDepartures();
+    [RelayCommand]
+    public async Task SearchStops()
+    {
+        if (string.IsNullOrWhiteSpace(SearchText) || SearchText.Length < 3)
+        {
+            FoundStops.Clear();
+            OnPropertyChanged(nameof(IsSuggestionsVisible));
+            return;
+        }
 
-    // Заглушки команд, чтобы UI не выдавал ошибок привязке
-    [RelayCommand] private Task NavigatedTo() => Task.CompletedTask;
+        try
+        {
+            IsSearching = true;
+            var results = await _api.SearchStopsAsync(SearchText);
 
-    // MainPageModel.cs
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                FoundStops.Clear();
+                if (results != null)
+                {
+                    foreach (var stop in results) FoundStops.Add(stop);
+                }
+                OnPropertyChanged(nameof(IsSuggestionsVisible));
+            });
+        }
+        finally
+        {
+            IsSearching = false;
+        }
+    }
+
+    [RelayCommand]
+    public async Task SelectStop(Stop stop)
+    {
+        if (stop == null) return;
+
+        SelectedStopId = stop.stop_id;
+        SearchText = stop.stop_name;
+        FoundStops.Clear();
+        OnPropertyChanged(nameof(IsSuggestionsVisible));
+
+        await LoadDepartures();
+    }
+
     [RelayCommand]
     private async Task GoToStopDetails(StopDeparture departure)
     {
-        if (departure == null) return;
+        if (departure == null || departure.route_short_name == "INFO") return;
 
-        // Переходим на страницу деталей, которую мы зарегистрировали в AppShell
         await Shell.Current.GoToAsync(nameof(StopDetailPage), new Dictionary<string, object>
-    {
-        { "SelectedStop", departure }
-    });
+        {
+            { "SelectedStop", departure }
+        });
     }
 
+    [RelayCommand] private async Task Refresh() => await LoadDepartures();
+    [RelayCommand] private async Task Appearing() => await LoadDepartures();
+
+    // Stubs for XAML compatibility
+    [RelayCommand] private Task NavigatedTo() => Task.CompletedTask;
     [RelayCommand] private Task NavigatedFrom() => Task.CompletedTask;
-    [RelayCommand] private Task AddTask() => Task.CompletedTask;
-    [RelayCommand] private Task CleanTasks() => Task.CompletedTask;
-    [RelayCommand] private Task TaskCompleted(ProjectTask task) => Task.CompletedTask;
+    [ObservableProperty] private ObservableCollection<ProjectTask> _tasks = new();
 }
