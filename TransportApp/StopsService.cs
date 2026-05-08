@@ -45,4 +45,19 @@ public class StopsService
 
         return path;
     }
+
+    public async Task<IEnumerable<dynamic>> GetDetailedRouteAsync(string fromId, string toId)
+    {
+        var pathIds = _routingService.FindShortestPath(fromId, toId);
+        if (pathIds == null || !pathIds.Any()) return Enumerable.Empty<dynamic>();
+
+        using var conn = _db.GetConnection();
+        // Fetch names and coordinates for all stops in the calculated path
+        var sql = "SELECT stop_id, stop_name, stop_lat, stop_lon FROM stops WHERE stop_id = ANY(@pathIds)";
+        var stopDetails = await conn.QueryAsync(sql, new { pathIds = pathIds.ToArray() });
+
+        // Important: Re-sort them to match the Dijkstra path order
+        var detailsMap = stopDetails.ToDictionary(s => (string)s.stop_id);
+        return pathIds.Select(id => detailsMap[id]);
+    }
 }

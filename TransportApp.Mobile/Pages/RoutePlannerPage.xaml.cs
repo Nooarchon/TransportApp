@@ -1,5 +1,10 @@
 namespace TransportApp.Mobile.Pages;
+
 public partial class RoutePlannerPage : ContentPage
 {
-    public RoutePlannerPage() => InitializeComponent();
+    public RoutePlannerPage(RoutePlannerPageModel vm)
+    {
+        InitializeComponent();
+        BindingContext = vm;
+    }
 }

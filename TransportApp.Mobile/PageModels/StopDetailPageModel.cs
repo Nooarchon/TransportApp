@@ -10,8 +10,7 @@ public partial class StopDetailPageModel : ObservableObject
 
     partial void OnSelectedStopChanged(StopDeparture value)
     {
-        System.Diagnostics.Debug.WriteLine($"=== ПОЛУЧЕН SelectedStop: {value?.route_short_name} ===");
+        System.Diagnostics.Debug.WriteLine($"=== RECEIVED SelectedStop: {value?.route_short_name} ===");
     }
 
 }
-

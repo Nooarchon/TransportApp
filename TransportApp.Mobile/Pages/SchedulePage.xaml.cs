@@ -1,14 +1,15 @@
 ﻿using TransportApp.Mobile.Services;
+
 using TransportApp.Mobile.Models;
 
 namespace TransportApp.Mobile.Pages;
 
 public partial class SchedulePage : ContentPage
 {
-    // Мы убрали = new ApiService(). Теперь сервис придет "извне".
+    // We removed = new ApiService(). Now the service will come from outside.
     private readonly ApiService _apiService;
 
-    // В конструктор добавляем параметр ApiService
+    // Add the ApiService parameter to the constructor
     public SchedulePage(ApiService apiService)
     {
         InitializeComponent();
@@ -22,13 +23,13 @@ public partial class SchedulePage : ContentPage
 
         try
         {
-            // Здесь всё остается так же
+            // Everything remains the same here
             var departures = await _apiService.GetDeparturesAsync(stopId);
             DeparturesList.ItemsSource = departures;
         }
         catch (Exception)
         {
-            await DisplayAlert("Ошибка", "Не удалось получить данные. Проверьте соединение с API.", "OK");
+            await DisplayAlert("Error", "Failed to retrieve data. Check your API connection.", "OK");
         }
     }
 }

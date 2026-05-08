@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TransportApp.Mobile")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+edb48e3c9390c004f4297e6c18ccb097ed541cc1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+c75a759b630ca7730ee74324f7cdd7ff1e453f33")]
 [assembly: System.Reflection.AssemblyProductAttribute("TransportApp.Mobile")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TransportApp.Mobile")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

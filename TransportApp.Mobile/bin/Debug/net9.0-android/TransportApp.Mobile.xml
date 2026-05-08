@@ -429,20 +429,17 @@
         <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.IsSearching">
             <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._isSearching"/>
         </member>
-        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.OriginSuggestions">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._originSuggestions"/>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.DestinationSuggestions">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._destinationSuggestions"/>
-        </member>
-        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.CalculatedRoute">
-            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._calculatedRoute"/>
-        </member>
         <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectedOrigin">
             <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._selectedOrigin"/>
         </member>
         <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SelectedDestination">
             <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._selectedDestination"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.IsOriginSuggestionsVisible">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._isOriginSuggestionsVisible"/>
+        </member>
+        <member name="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.IsDestinationSuggestionsVisible">
+            <inheritdoc cref="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel._isDestinationSuggestionsVisible"/>
         </member>
         <member name="F:TransportApp.Mobile.PageModels.RoutePlannerPageModel.searchOriginCommand">
             <summary>The backing field for <see cref="P:TransportApp.Mobile.PageModels.RoutePlannerPageModel.SearchOriginCommand"/>.</summary>
@@ -817,20 +814,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DestinationText">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DestinationText" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.OriginSuggestions">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "OriginSuggestions" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.DestinationSuggestions">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "DestinationSuggestions" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.CalculatedRoute">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "CalculatedRoute" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedOrigin">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedOrigin" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedDestination">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedDestination" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsOriginSuggestionsVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsOriginSuggestionsVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.IsDestinationSuggestionsVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "IsDestinationSuggestionsVisible" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangingArgs.SelectedStop">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangingEventArgs"/> instance for all "SelectedStop" generated properties.</summary>
@@ -901,20 +895,17 @@
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DestinationText">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DestinationText" generated properties.</summary>
         </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.OriginSuggestions">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "OriginSuggestions" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.DestinationSuggestions">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "DestinationSuggestions" generated properties.</summary>
-        </member>
-        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.CalculatedRoute">
-            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "CalculatedRoute" generated properties.</summary>
-        </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedOrigin">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedOrigin" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedDestination">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedDestination" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsOriginSuggestionsVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsOriginSuggestionsVisible" generated properties.</summary>
+        </member>
+        <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.IsDestinationSuggestionsVisible">
+            <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "IsDestinationSuggestionsVisible" generated properties.</summary>
         </member>
         <member name="F:CommunityToolkit.Mvvm.ComponentModel.__Internals.__KnownINotifyPropertyChangedArgs.SelectedStop">
             <summary>The cached <see cref="T:System.ComponentModel.PropertyChangedEventArgs"/> instance for all "SelectedStop" generated properties.</summary>

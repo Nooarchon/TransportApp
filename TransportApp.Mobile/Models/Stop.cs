@@ -5,10 +5,10 @@ namespace TransportApp.Mobile.Models;
 public class Stop
 {
     [JsonPropertyName("stop_id")]
-    public string stop_id { get; set; }
+    public string stop_id { get; set; } = string.Empty;
 
     [JsonPropertyName("stop_name")]
-    public string stop_name { get; set; }
+    public string stop_name { get; set; } = string.Empty;
 
     [JsonPropertyName("stop_lat")]
     public double stop_lat { get; set; }

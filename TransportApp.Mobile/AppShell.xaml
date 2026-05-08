@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="TransportApp.Mobile.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:TransportApp.Mobile.Pages"
-    xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
-    Shell.FlyoutBehavior="Flyout"
-    Title="Транспорт Праги">
+<Shell 
+x:Class="TransportApp.Mobile.AppShell" 
+xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:pages="clr-namespace:TransportApp.Mobile.Pages" 
+xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit" 
+Shell.FlyoutBehavior="Flyout" 
+Title="Transport of Prague">
 
     <Shell.Resources>
         <ResourceDictionary>
@@ -16,44 +16,37 @@
         </ResourceDictionary>
     </Shell.Resources>
 
-    <!-- Главная -->
-    <FlyoutItem Title="Ближайшее расписание" Icon="{StaticResource IconBus}">
+    <!-- Home -->
+    <FlyoutItem Title="Home" Icon="{StaticResource IconBus}">
         <ShellContent 
-            ContentTemplate="{DataTemplate pages:MainPage}" 
-            Route="main" />
+ContentTemplate="{DataTemplate pages:MainPage}" 
+Route="main" />
     </FlyoutItem>
 
-    <!-- Планировщик -->
-    <FlyoutItem Title="Планировщик" Icon="{StaticResource IconRoute}">
-        <ShellContent 
-            ContentTemplate="{DataTemplate pages:RoutePlannerPage}" 
-            Route="routePlanner" />
+    <!-- Planner -->
+    <FlyoutItem Title="Planner" Icon="{StaticResource IconRoute}">
+        <ShellContent
+ContentTemplate="{DataTemplate pages:RoutePlannerPage}"
+Route="routePlanner" />
     </FlyoutItem>
 
-    <!-- Настройки -->
-    <FlyoutItem Title="Настройки" Icon="{StaticResource IconSettings}">
-        <ShellContent 
-            ContentTemplate="{DataTemplate pages:ManageMetaPage}" 
-            Route="manage" />
-    </FlyoutItem>
-
-    <!-- ВАЖНО:
-         Маршрут StopDetailPage НЕ должен быть здесь,
-         потому что он регистрируется через DI:
-         AddTransientWithShellRoute<StopDetailPage, StopDetailPageModel>("StopDetailPage")
-    -->
+    <!-- IMPORTANT:
+The StopDetailPage route should NOT be here,
+because it is registered via DI:
+AddTransientWithShellRoute<StopDetailPage, StopDetailPageModel>("StopDetailPage")
+-->
 
     <Shell.FlyoutFooter>
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Тема приложения" HorizontalOptions="Center" FontSize="12" TextColor="Gray"/>
-            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl" 
-                                   SelectionChanged="SfSegmentedControl_SelectionChanged"
-                                   VerticalOptions="Center" 
-                                   HorizontalOptions="Center">
+            <Label Text="Application Theme" HorizontalOptions="Center" FontSize="12" TextColor="Gray"/>
+            <sf:SfSegmentedControl x:Name="ThemeSegmentedControl"
+SelectionChanged="SfSegmentedControl_SelectionChanged"
+VerticalOptions="Center"
+HorizontalOptions="Center">
                 <sf:SfSegmentedControl.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Светлая</x:String>
-                        <x:String>Темная</x:String>
+                        <x:String>Light</x:String>
+                        <x:String>Dark</x:String>
                     </x:Array>
                 </sf:SfSegmentedControl.ItemsSource>
             </sf:SfSegmentedControl>

@@ -11,90 +11,60 @@ public partial class RoutePlannerPageModel : ObservableObject
 {
     private readonly ApiService _api;
 
-    public RoutePlannerPageModel(ApiService api)
+    public RoutePlannerPageModel(ApiService apiService)
     {
-        _api = api;
+        _api = apiService;
     }
 
-    [ObservableProperty]
-    private string _originText;
+    [ObservableProperty] private string _originText = string.Empty;
+    [ObservableProperty] private string _destinationText = string.Empty;
+    [ObservableProperty] private bool _isSearching;
 
-    [ObservableProperty]
-    private string _destinationText;
+    [ObservableProperty] private Stop? _selectedOrigin;
+    [ObservableProperty] private Stop? _selectedDestination;
+    [ObservableProperty] private bool _isOriginSuggestionsVisible;
+    [ObservableProperty] private bool _isDestinationSuggestionsVisible;
 
-    [ObservableProperty]
-    private bool _isSearching;
-
-    // NotifyPropertyChangedFor заставляет UI пересчитывать видимость списка при изменении коллекции
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsOriginSuggestionsVisible))]
-    private ObservableCollection<Stop> _originSuggestions = new();
-
-    [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(IsDestinationSuggestionsVisible))]
-    private ObservableCollection<Stop> _destinationSuggestions = new();
-
-    [ObservableProperty]
-    private ObservableCollection<Stop> _calculatedRoute = new();
-
-    [ObservableProperty] private Stop _selectedOrigin;
-    [ObservableProperty] private Stop _selectedDestination;
-
-    // Упрощенные геттеры
-    public bool IsOriginSuggestionsVisible => OriginSuggestions?.Count > 0;
-    public bool IsDestinationSuggestionsVisible => DestinationSuggestions?.Count > 0;
+    public ObservableCollection<Stop> OriginSuggestions { get; } = new();
+    public ObservableCollection<Stop> DestinationSuggestions { get; } = new();
+    public ObservableCollection<Stop> CalculatedRoute { get; } = new();
 
     [RelayCommand]
-    public async Task SearchOrigin()
+    private async Task SearchOrigin()
     {
-        // Проверка: если текст совпадает с уже выбранной остановкой, поиск не нужен
-        if (SelectedOrigin != null && OriginText == SelectedOrigin.stop_name) return;
-
         if (string.IsNullOrWhiteSpace(OriginText) || OriginText.Length < 3)
         {
+            IsOriginSuggestionsVisible = false;
             OriginSuggestions.Clear();
-            OnPropertyChanged(nameof(IsOriginSuggestionsVisible));
             return;
         }
 
         var results = await _api.SearchStopsAsync(OriginText);
+        OriginSuggestions.Clear();
+        foreach (var stop in results) OriginSuggestions.Add(stop);
 
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            OriginSuggestions.Clear();
-            if (results != null)
-            {
-                foreach (var stop in results)
-                    OriginSuggestions.Add(stop);
-            }
-            OnPropertyChanged(nameof(IsOriginSuggestionsVisible));
-        });
+        IsOriginSuggestionsVisible = OriginSuggestions.Count > 0;
+        // Reset selection if text changed
+        SelectedOrigin = null;
     }
 
     [RelayCommand]
-    public async Task SearchDestination()
+    private async Task SearchDestination()
     {
-        if (SelectedDestination != null && DestinationText == SelectedDestination.stop_name) return;
-
         if (string.IsNullOrWhiteSpace(DestinationText) || DestinationText.Length < 3)
         {
+            IsDestinationSuggestionsVisible = false;
             DestinationSuggestions.Clear();
-            OnPropertyChanged(nameof(IsDestinationSuggestionsVisible));
             return;
         }
 
         var results = await _api.SearchStopsAsync(DestinationText);
+        DestinationSuggestions.Clear();
+        foreach (var stop in results) DestinationSuggestions.Add(stop);
 
-        await MainThread.InvokeOnMainThreadAsync(() =>
-        {
-            DestinationSuggestions.Clear();
-            if (results != null)
-            {
-                foreach (var stop in results)
-                    DestinationSuggestions.Add(stop);
-            }
-            OnPropertyChanged(nameof(IsDestinationSuggestionsVisible));
-        });
+        IsDestinationSuggestionsVisible = DestinationSuggestions.Count > 0;
+        // Reset selection if text changed
+        SelectedDestination = null;
     }
 
     [RelayCommand]
@@ -102,34 +72,37 @@ public partial class RoutePlannerPageModel : ObservableObject
     {
         if (stop == null) return;
 
-        SelectedOrigin = stop;
-        // Обновляем текст через поле, чтобы не вызвать повторный SearchOrigin через сеттер
-        _originText = stop.stop_name;
-        OnPropertyChanged(nameof(OriginText));
+        // Check your Output window in Visual Studio for this line!
+        System.Diagnostics.Debug.WriteLine($"SELECTED: {stop.stop_name}");
 
-        OriginSuggestions.Clear();
-        OnPropertyChanged(nameof(IsOriginSuggestionsVisible));
+        SelectedOrigin = stop;
+        OriginText = stop.stop_name;
+        IsOriginSuggestionsVisible = false;
     }
 
     [RelayCommand]
     public void SelectDestination(Stop stop)
     {
         if (stop == null) return;
-
         SelectedDestination = stop;
-        _destinationText = stop.stop_name;
-        OnPropertyChanged(nameof(DestinationText));
-
+        DestinationText = stop.stop_name;
+        IsDestinationSuggestionsVisible = false;
         DestinationSuggestions.Clear();
-        OnPropertyChanged(nameof(IsDestinationSuggestionsVisible));
     }
 
     [RelayCommand]
     public async Task FindRoute()
     {
+        // AUTO-MATCH FALLBACK: If user didn't tap, pick the first result from the list
+        if (SelectedOrigin == null && OriginSuggestions.Count > 0)
+            SelectedOrigin = OriginSuggestions[0];
+
+        if (SelectedDestination == null && DestinationSuggestions.Count > 0)
+            SelectedDestination = DestinationSuggestions[0];
+
         if (SelectedOrigin == null || SelectedDestination == null)
         {
-            await Shell.Current.DisplayAlert("Info", "Select stops from the list first!", "OK");
+            await Shell.Current.DisplayAlert("Error", "Please select a valid stop from the results.", "OK");
             return;
         }
 
@@ -137,24 +110,16 @@ public partial class RoutePlannerPageModel : ObservableObject
         try
         {
             var route = await _api.GetShortestRouteAsync(SelectedOrigin.stop_id, SelectedDestination.stop_id);
-
-            await MainThread.InvokeOnMainThreadAsync(() =>
-            {
-                CalculatedRoute.Clear();
-                if (route != null)
-                {
-                    foreach (var s in route)
-                        CalculatedRoute.Add(s);
-                }
-            });
+            CalculatedRoute.Clear();
+            foreach (var stop in route) CalculatedRoute.Add(stop);
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"Error finding route: {ex.Message}");
+            Debug.WriteLine($"Error: {ex.Message}");
         }
-        finally
-        {
-            IsSearching = false;
-        }
+        finally { IsSearching = false; }
+
+        Debug.WriteLine($"ORIGIN: {SelectedOrigin?.stop_name}");
+        Debug.WriteLine($"DEST: {SelectedDestination?.stop_name}");
     }
 }

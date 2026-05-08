@@ -6,96 +6,151 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="TransportApp.Mobile.Pages.RoutePlannerPage"
              x:DataType="pageModels:RoutePlannerPageModel"
+             x:Name="ThisPage"
              Title="Planner">
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-            <Label Text="Where are we going?" FontSize="28" FontAttributes="Bold" Margin="0,0,0,10"/>
 
-            <!-- ОТПРАВНАЯ ТОЧКА (FROM) -->
-            <Label Text="From" FontSize="14" TextColor="Gray"/>
-            <Grid RowDefinitions="Auto, Auto">
-                <Frame Padding="5,0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
-                    <SearchBar Placeholder="Origin (e.g. Praha...)" 
+            <Label Text="Where are we going?"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   Margin="0,0,0,10" />
+
+            <!-- FROM -->
+            <Label Text="From"
+                   FontSize="14"
+                   TextColor="Gray" />
+
+            <Grid RowDefinitions="Auto,Auto">
+
+                <Border Stroke="LightGray"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="5,0">
+
+                    <SearchBar Placeholder="Origin (e.g. Praha...)"
                                Text="{Binding OriginText}"
                                HeightRequest="45">
+
                         <SearchBar.Behaviors>
-                            <toolkit:EventToCommandBehavior 
-                                EventName="TextChanged" 
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
                                 Command="{Binding SearchOriginCommand}" />
                         </SearchBar.Behaviors>
-                    </SearchBar>
-                </Frame>
 
-                <Frame Grid.Row="1"
-                       IsVisible="{Binding IsOriginSuggestionsVisible}"
-                       BackgroundColor="#252525"
-                       BorderColor="Gray"
-                       Padding="0"
-                       HasShadow="True"
-                       HeightRequest="200"
-                       ZIndex="10">
-                    <CollectionView ItemsSource="{Binding OriginSuggestions}" SelectionMode="None">
+                    </SearchBar>
+                </Border>
+
+                <!-- Origin Suggestions -->
+                <Border Grid.Row="1"
+                        IsVisible="{Binding IsOriginSuggestionsVisible}"
+                        BackgroundColor="#252525"
+                        Stroke="Gray"
+                        ZIndex="10"
+                        Margin="0,2"
+                        MaximumHeightRequest="200"
+                        StrokeShape="RoundRectangle 8">
+
+                    <CollectionView ItemsSource="{Binding OriginSuggestions}">
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:Stop">
-                                <Grid Padding="15" BackgroundColor="Transparent">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:RoutePlannerPageModel}}, Path=SelectOriginCommand}"
+
+                                <Border Padding="15"
+                                        BackgroundColor="Transparent">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.SelectOriginCommand, Source={x:Reference ThisPage}}"
                                             CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-                                    <!-- Важно: проверьте соответствие имени поля stop_name в модели Stop -->
-                                    <Label Text="{Binding stop_name}" TextColor="White" FontSize="16" VerticalOptions="Center" />
-                                </Grid>
+                                    </Border.GestureRecognizers>
+
+                                    <Label Text="{Binding stop_name}"
+                                           TextColor="White"
+                                           FontSize="16" />
+
+                                </Border>
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+
                     </CollectionView>
-                </Frame>
+
+                </Border>
+
             </Grid>
 
-            <!-- ТОЧКА НАЗНАЧЕНИЯ (TO) -->
-            <Label Text="To" FontSize="14" TextColor="Gray" Margin="0,10,0,0"/>
-            <Grid RowDefinitions="Auto, Auto">
-                <Frame Padding="5,0" HasShadow="False" BorderColor="LightGray" CornerRadius="8">
-                    <SearchBar Placeholder="Destination (e.g. Kolín...)" 
+            <!-- TO -->
+            <Label Text="To"
+                   FontSize="14"
+                   TextColor="Gray"
+                   Margin="0,10,0,0" />
+
+            <Grid RowDefinitions="Auto,Auto">
+
+                <Border Stroke="LightGray"
+                        StrokeShape="RoundRectangle 8"
+                        Padding="5,0">
+
+                    <SearchBar Placeholder="Destination (e.g. Kolín...)"
                                Text="{Binding DestinationText}"
                                HeightRequest="45">
+
                         <SearchBar.Behaviors>
-                            <toolkit:EventToCommandBehavior 
-                                EventName="TextChanged" 
+                            <toolkit:EventToCommandBehavior
+                                EventName="TextChanged"
                                 Command="{Binding SearchDestinationCommand}" />
                         </SearchBar.Behaviors>
-                    </SearchBar>
-                </Frame>
 
-                <Frame Grid.Row="1"
-                       IsVisible="{Binding IsDestinationSuggestionsVisible}"
-                       BackgroundColor="#252525"
-                       BorderColor="Gray"
-                       Padding="0"
-                       HasShadow="True"
-                       HeightRequest="200"
-                       ZIndex="10">
-                    <CollectionView ItemsSource="{Binding DestinationSuggestions}" SelectionMode="None">
+                    </SearchBar>
+                </Border>
+
+                <!-- Destination Suggestions -->
+                <Border Grid.Row="1"
+                        IsVisible="{Binding IsDestinationSuggestionsVisible}"
+                        BackgroundColor="#252525"
+                        Stroke="Gray"
+                        ZIndex="10"
+                        Margin="0,2"
+                        MaximumHeightRequest="200"
+                        StrokeShape="RoundRectangle 8">
+
+                    <CollectionView ItemsSource="{Binding DestinationSuggestions}">
+
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:Stop">
-                                <Grid Padding="15" BackgroundColor="Transparent">
-                                    <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer 
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type pageModels:RoutePlannerPageModel}}, Path=SelectDestinationCommand}"
+
+                                <Border Padding="15"
+                                        BackgroundColor="Transparent">
+
+                                    <Border.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.SelectDestinationCommand, Source={x:Reference ThisPage}}"
                                             CommandParameter="{Binding .}" />
-                                    </Grid.GestureRecognizers>
-                                    <Label Text="{Binding stop_name}" TextColor="White" FontSize="16" VerticalOptions="Center" />
-                                </Grid>
+                                    </Border.GestureRecognizers>
+
+                                    <Label Text="{Binding stop_name}"
+                                           TextColor="White"
+                                           FontSize="16" />
+
+                                </Border>
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+
                     </CollectionView>
-                </Frame>
+
+                </Border>
+
             </Grid>
 
-            <ActivityIndicator IsRunning="{Binding IsSearching}" IsVisible="{Binding IsSearching}" HeightRequest="40" />
+            <!-- Loading -->
+            <ActivityIndicator IsRunning="{Binding IsSearching}"
+                               IsVisible="{Binding IsSearching}"
+                               HeightRequest="40" />
 
-            <Button Text="Find Route" 
+            <!-- Button -->
+            <Button Text="Find Route"
                     Command="{Binding FindRouteCommand}"
                     BackgroundColor="{StaticResource Primary}"
                     TextColor="White"
@@ -104,25 +159,45 @@
                     CornerRadius="25"
                     Margin="0,20,0,0" />
 
-            <!-- РЕЗУЛЬТАТ МАРШРУТА -->
-            <CollectionView ItemsSource="{Binding CalculatedRoute}" Margin="0,10">
-                <CollectionView.Header>
-                    <Label Text="Recommended Route:" 
-                           FontAttributes="Bold" 
-                           FontSize="18"
-                           Margin="0,10"
-                           TextColor="White"
-                           IsVisible="{Binding CalculatedRoute.Count}" />
-                </CollectionView.Header>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Stop">
-                        <Grid ColumnDefinitions="30, *" Padding="5">
-                            <Ellipse Fill="Green" WidthRequest="10" HeightRequest="10" VerticalOptions="Center" HorizontalOptions="Center"/>
-                            <Label Grid.Column="1" Text="{Binding stop_name}" TextColor="White" FontSize="16" VerticalOptions="Center"/>
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <!-- Route -->
+            <VerticalStackLayout Spacing="5"
+                                 Margin="0,10"
+                                 IsVisible="{Binding HasRoute}">
+
+                <Label Text="Recommended Route:"
+                       FontAttributes="Bold"
+                       FontSize="18"
+                       TextColor="White" />
+
+                <CollectionView ItemsSource="{Binding CalculatedRoute}">
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Stop">
+
+                            <Grid ColumnDefinitions="30,*"
+                                  Padding="10">
+
+                                <Ellipse Fill="Green"
+                                         WidthRequest="10"
+                                         HeightRequest="10"
+                                         VerticalOptions="Center" />
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding stop_name}"
+                                       TextColor="White"
+                                       FontSize="16"
+                                       VerticalOptions="Center" />
+
+                            </Grid>
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </VerticalStackLayout>
+
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>

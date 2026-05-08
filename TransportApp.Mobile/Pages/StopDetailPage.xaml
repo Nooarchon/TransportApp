@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:models="clr-namespace:TransportApp.Mobile.Models"
-             xmlns:local="clr-namespace:TransportApp.Mobile.Pages"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:pageModels="clr-namespace:TransportApp.Mobile.PageModels"
-             x:Class="TransportApp.Mobile.Pages.StopDetailPage"
-             x:DataType="pageModels:StopDetailPageModel" 
-             Title="Детали рейса">
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+xmlns:models="clr-namespace:TransportApp.Mobile.Models" 
+xmlns:local="clr-namespace:TransportApp.Mobile.Pages" 
+xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit" 
+xmlns:pageModels="clr-namespace:TransportApp.Mobile.PageModels" 
+x:Class="TransportApp.Mobile.Pages.StopDetailPage" 
+x:DataType="pageModels:StopDetailPageModel" 
+Title="Flight details">
 
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="15">
 
         <VerticalStackLayout Grid.Row="0" Spacing="5">
             <Label Text="{Binding SelectedStop.route_short_name}" 
-                   FontSize="32" FontAttributes="Bold" 
-                   TextColor="#512BD4" />
+FontSize="32" FontAttributes="Bold" 
+TextColor="#512BD4" />
             <Label Text="{Binding SelectedStop.trip_headsign}" 
-                   FontSize="20" Opacity="0.8" />
+FontSize="20" Opacity="0.8" />
         </VerticalStackLayout>
 
         <ScrollView Grid.Row="1">
             <VerticalStackLayout Spacing="20">
-                <Frame Padding="20" CornerRadius="15" HasShadow="False"
-                       BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#1E1E1E}">
+                <Frame Padding="20" CornerRadius="15" HasShadow="False" 
+BackgroundColor="{AppThemeBinding Light=#F0F0F0, Dark=#1E1E1E}">
                     <VerticalStackLayout Spacing="10">
-                        <Label Text="Информация о прибытии" FontAttributes="Bold" FontSize="18"/>
+                        <Label Text="Arrival Information" FontAttributes="Bold" FontSize="18"/>
 
                         <BoxView HeightRequest="1" Color="Gray" Opacity="0.3"/>
 
                         <HorizontalStackLayout Spacing="10">
-                            <Label Text="Время:" TextColor="Gray" WidthRequest="100"/>
+                            <Label Text="Time:" TextColor="Gray" WidthRequest="100"/>
                             <Label Text="{Binding SelectedStop.arrival_time}" FontAttributes="Bold"/>
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout Spacing="10">
-                            <Label Text="Статус:" TextColor="Gray" WidthRequest="100"/>
-                            <Label Text="По расписанию" TextColor="Green"/>
+                            <Label Text="Status:" TextColor="Gray" WidthRequest="100"/>
+                            <Label Text="On Schedule" TextColor="Green"/>
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
                 </Frame>

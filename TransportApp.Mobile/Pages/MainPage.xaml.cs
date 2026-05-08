@@ -14,11 +14,11 @@ public partial class MainPage : ContentPage
     {
         base.OnAppearing();
 
-        // Проверяем, что модель привязана и данные еще не загружены (чтобы не спамить запросами)
+        // Check that the model is bound and the data hasn't loaded yet (to avoid spamming requests)
         if (BindingContext is MainPageModel model)
         {
-            // Вызываем команду загрузки из MainPageModel
-            // Это заполнит ваш список теми данными S1/R41, которые мы видели на скриншоте
+            // Call the load command from MainPageModel
+            // This will populate your list with the S1/R41 data we saw in the screenshot
             await model.LoadDeparturesCommand.ExecuteAsync(null);
         }
     }
