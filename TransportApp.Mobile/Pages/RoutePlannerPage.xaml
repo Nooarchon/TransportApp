@@ -17,139 +17,113 @@
                    FontAttributes="Bold"
                    Margin="0,0,0,10" />
 
-            <!-- FROM -->
+            <!-- FROM SECTION -->
             <Label Text="From"
                    FontSize="14"
                    TextColor="Gray" />
 
-            <Grid RowDefinitions="Auto,Auto">
-
+            <Grid RowDefinitions="Auto">
                 <Border Stroke="LightGray"
                         StrokeShape="RoundRectangle 8"
-                        Padding="5,0">
-
+                        Padding="5,0"
+                        ZIndex="1">
                     <SearchBar Placeholder="Origin (e.g. Praha...)"
                                Text="{Binding OriginText}"
+                               SearchCommand="{Binding SearchOriginCommand}"
                                HeightRequest="45">
-
                         <SearchBar.Behaviors>
                             <toolkit:EventToCommandBehavior
                                 EventName="TextChanged"
                                 Command="{Binding SearchOriginCommand}" />
                         </SearchBar.Behaviors>
-
                     </SearchBar>
                 </Border>
 
-                <!-- Origin Suggestions -->
-                <Border Grid.Row="1"
-                        IsVisible="{Binding IsOriginSuggestionsVisible}"
+                <!-- Floating Origin Suggestions -->
+                <Border IsVisible="{Binding IsOriginSuggestionsVisible}"
                         BackgroundColor="#252525"
                         Stroke="Gray"
                         ZIndex="10"
-                        Margin="0,2"
+                        TranslationY="50"
+                        VerticalOptions="Start"
                         MaximumHeightRequest="200"
                         StrokeShape="RoundRectangle 8">
-
                     <CollectionView ItemsSource="{Binding OriginSuggestions}">
-
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:Stop">
-
-                                <Border Padding="15"
-                                        BackgroundColor="Transparent">
-
+                                <Border Padding="15" BackgroundColor="Transparent">
                                     <Border.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.SelectOriginCommand, Source={x:Reference ThisPage}}"
+                                        <TapGestureRecognizer 
+                                            Command="{Binding BindingContext.SelectOriginCommand, Source={x:Reference ThisPage}}" 
                                             CommandParameter="{Binding .}" />
                                     </Border.GestureRecognizers>
-
                                     <Label Text="{Binding stop_name}"
                                            TextColor="White"
                                            FontSize="16" />
-
                                 </Border>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-
                     </CollectionView>
-
                 </Border>
-
             </Grid>
 
-            <!-- TO -->
+            <!-- TO SECTION -->
             <Label Text="To"
                    FontSize="14"
                    TextColor="Gray"
                    Margin="0,10,0,0" />
 
-            <Grid RowDefinitions="Auto,Auto">
-
+            <Grid RowDefinitions="Auto">
                 <Border Stroke="LightGray"
                         StrokeShape="RoundRectangle 8"
-                        Padding="5,0">
-
+                        Padding="5,0"
+                        ZIndex="1">
                     <SearchBar Placeholder="Destination (e.g. Kolín...)"
                                Text="{Binding DestinationText}"
+                               SearchCommand="{Binding SearchDestinationCommand}"
                                HeightRequest="45">
-
                         <SearchBar.Behaviors>
                             <toolkit:EventToCommandBehavior
                                 EventName="TextChanged"
                                 Command="{Binding SearchDestinationCommand}" />
                         </SearchBar.Behaviors>
-
                     </SearchBar>
                 </Border>
 
-                <!-- Destination Suggestions -->
-                <Border Grid.Row="1"
-                        IsVisible="{Binding IsDestinationSuggestionsVisible}"
+                <!-- Floating Destination Suggestions -->
+                <Border IsVisible="{Binding IsDestinationSuggestionsVisible}"
                         BackgroundColor="#252525"
                         Stroke="Gray"
-                        ZIndex="10"
-                        Margin="0,2"
+                        ZIndex="5"
+                        TranslationY="50"
+                        VerticalOptions="Start"
                         MaximumHeightRequest="200"
                         StrokeShape="RoundRectangle 8">
-
                     <CollectionView ItemsSource="{Binding DestinationSuggestions}">
-
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="models:Stop">
-
-                                <Border Padding="15"
-                                        BackgroundColor="Transparent">
-
+                                <Border Padding="15" BackgroundColor="Transparent">
                                     <Border.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.SelectDestinationCommand, Source={x:Reference ThisPage}}"
+                                        <TapGestureRecognizer 
+                                            Command="{Binding BindingContext.SelectDestinationCommand, Source={x:Reference ThisPage}}" 
                                             CommandParameter="{Binding .}" />
                                     </Border.GestureRecognizers>
-
                                     <Label Text="{Binding stop_name}"
                                            TextColor="White"
                                            FontSize="16" />
-
                                 </Border>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-
                     </CollectionView>
-
                 </Border>
-
             </Grid>
 
-            <!-- Loading -->
+            <!-- Status & Action -->
             <ActivityIndicator IsRunning="{Binding IsSearching}"
                                IsVisible="{Binding IsSearching}"
+                               Color="{StaticResource Primary}"
                                HeightRequest="40" />
 
-            <!-- Button -->
             <Button Text="Find Route"
                     Command="{Binding FindRouteCommand}"
                     BackgroundColor="{StaticResource Primary}"
@@ -159,45 +133,34 @@
                     CornerRadius="25"
                     Margin="0,20,0,0" />
 
-            <!-- Route -->
+            <!-- Route Results -->
             <VerticalStackLayout Spacing="5"
                                  Margin="0,10"
                                  IsVisible="{Binding HasRoute}">
-
                 <Label Text="Recommended Route:"
                        FontAttributes="Bold"
                        FontSize="18"
                        TextColor="White" />
 
                 <CollectionView ItemsSource="{Binding CalculatedRoute}">
-
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Stop">
-
-                            <Grid ColumnDefinitions="30,*"
-                                  Padding="10">
-
+                            <Grid ColumnDefinitions="30,*" Padding="10">
                                 <Ellipse Fill="Green"
                                          WidthRequest="10"
                                          HeightRequest="10"
                                          VerticalOptions="Center" />
-
                                 <Label Grid.Column="1"
                                        Text="{Binding stop_name}"
                                        TextColor="White"
                                        FontSize="16"
                                        VerticalOptions="Center" />
-
                             </Grid>
-
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-
                 </CollectionView>
-
             </VerticalStackLayout>
 
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

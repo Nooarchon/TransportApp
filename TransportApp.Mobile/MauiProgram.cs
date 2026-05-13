@@ -2,9 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
 using TransportApp.Mobile.PageModels;
-using TransportApp.Mobile.Pages.Controls;
 using TransportApp.Mobile.Services;
-using TransportApp.Mobile.Utilities;
 using TransportApp.Mobile.Pages;
 
 namespace TransportApp.Mobile
@@ -14,25 +12,35 @@ namespace TransportApp.Mobile
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
-
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit();
+                .UseMauiCommunityToolkit()
+                .ConfigureSyncfusionToolkit()
+                .ConfigureFonts(fonts =>
+                {
+                    fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
+                    fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                });
 
-            // Services
-            builder.Services.AddSingleton<HttpClient>();
-            builder.Services.AddSingleton<ApiService>();
+            // --- SERVICES ---
+            // Fix: Register ApiService WITH HttpClient properly
+            builder.Services.AddHttpClient<ApiService>();
 
-            // ViewModels
-            builder.Services.AddSingleton<MainPageModel>();
+            // --- PAGEMODELS ---
+            builder.Services.AddTransient<MainPageModel>();
             builder.Services.AddTransient<RoutePlannerPageModel>();
+            builder.Services.AddTransient<StopDetailPageModel>();
 
-            // Pages
-            builder.Services.AddSingleton<MainPage>();
+            // --- PAGES ---
+            builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<RoutePlannerPage>();
 
-            // Shell route for StopDetailPage only
+            // Shell Route registration
             builder.Services.AddTransientWithShellRoute<StopDetailPage, StopDetailPageModel>("StopDetailPage");
+
+#if DEBUG
+            builder.Logging.AddDebug();
+#endif
 
             return builder.Build();
         }
