@@ -105,12 +105,29 @@ public partial class MainPageModel : ObservableObject
     {
         if (stop == null) return;
 
+        // 1. Обновляем ID выбранной остановки и текст в поиске
         SelectedStopId = stop.stop_id;
         SearchText = stop.stop_name;
+
+        // 2. Очищаем список найденных остановок
+        // Это автоматически скроет Border в XAML, так как FoundStops.Count станет 0
         FoundStops.Clear();
+
+        // Принудительно уведомляем UI, что свойство IsSuggestionsVisible изменилось
         OnPropertyChanged(nameof(IsSuggestionsVisible));
 
+        // 3. Запускаем GET-запрос для получения расписания именно этой остановки
         await LoadDepartures();
+    }
+
+    // Добавим очистку при пустом поиске, чтобы UI не "зависал" с открытым списком
+    partial void OnSearchTextChanged(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            FoundStops.Clear();
+            OnPropertyChanged(nameof(IsSuggestionsVisible));
+        }
     }
 
     [RelayCommand]

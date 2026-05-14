@@ -48,25 +48,29 @@ public class ApiService
 
     public async Task<List<Stop>> GetShortestRouteAsync(string fromId, string toId)
     {
+        if (string.IsNullOrEmpty(fromId) || string.IsNullOrEmpty(toId)) return new();
+
         try
         {
-            // FIX 1: Use the parameters fromId and toId to build the URL
-            // FIX 2: Do not hardcode "http://localhost..." here because you already set BaseAddress in the constructor
-            string encodedFrom = Uri.EscapeDataString(fromId);
-            string encodedTo = Uri.EscapeDataString(toId);
-            string url = $"api/stops/route/{encodedFrom}/{encodedTo}";
+            // Using relative path because BaseAddress is set in constructor
+            string url = $"api/stops/route/{Uri.EscapeDataString(fromId)}/{Uri.EscapeDataString(toId)}";
 
-            Debug.WriteLine($"---> Requesting Route: {url}");
+            Debug.WriteLine($"---> Calling: {_http.BaseAddress}{url}");
 
-            // FIX 3: GetFromJsonAsync handles the BaseAddress + the relative URL
+            // Use a shorter timeout or check for null
             var response = await _http.GetFromJsonAsync<List<Stop>>(url);
+
             return response ?? new();
+        }
+        catch (HttpRequestException httpEx)
+        {
+            Debug.WriteLine($"---> Network/HTTP Error: {httpEx.Message}");
+            return new();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"---> Route API Error: {ex.Message}");
+            Debug.WriteLine($"---> General Route Error: {ex.Message}");
             return new();
         }
-
     }
 }
